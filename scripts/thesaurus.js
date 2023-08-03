@@ -30,7 +30,7 @@ async function getSynonyms() {
                 // Extract the synonyms from the response
                 const synonyms = data[0].meta.syns[0];
                 responseField.innerHTML = '';
-                renderSynoynms(synonyms);
+                renderSynoynms(synonyms, wordQuery);
                 responseField.style.opacity = 1;
             } 
         }
@@ -43,19 +43,20 @@ async function getSynonyms() {
     form.reset()
 }
 
-const renderSynoynms = (synonyms) => {
+const renderSynoynms = (synonyms, wordQuery) => {
     const synonymDiv = document.createElement('div');
     let wordList = [];
     for (let i = 0; i < Math.min(synonyms.length, 27); ++i) {
         wordList.push(`<li>${synonyms[i]}</li>`);
     }
+
     wordList = wordList.join("");
-    synonymDiv.innerHTML = wordList;
+    synonymDiv.innerHTML = `<li style="color: #b0ebff">${wordQuery}</li>` + wordList;
     responseField.appendChild(synonymDiv);
     adjustSynonymHeight(synonymDiv);
 }
 
 function adjustSynonymHeight(synonymDiv) {
     const contentHeight = synonymDiv.scrollHeight;
-    responseField.style.height = (contentHeight + 150) / 3 + 'px';
+    responseField.style.height = (contentHeight + 200) / 3 + 'px';
 }
