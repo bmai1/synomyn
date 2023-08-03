@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const apiKey = process.env.API_KEY;
+const thesKey = process.env.THES_KEY;
 const form = document.querySelector('#form');
 const inputField = document.querySelector('#input');
 const submit = document.querySelector('#submit');
@@ -15,9 +15,11 @@ document.addEventListener('keyup', event => {
     if (event.key === 'Enter') getSynonyms()
 });
 
+const responseField = document.getElementById('responseField');
+
 async function getSynonyms() {
     let wordQuery = inputField.value
-    let theUrl = `https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${wordQuery}?key=${apiKey}`;
+    let theUrl = `https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${wordQuery}?key=${thesKey}`;
     try {
         const response = await fetch(theUrl);
         if(response.ok){
@@ -27,6 +29,7 @@ async function getSynonyms() {
             if (Array.isArray(data) && data.length > 0) {
                 // Extract the synonyms from the response
                 const synonyms = data[0].meta.syns[0];
+                responseField.innerHTML = '';
                 renderSynoynms(synonyms);
                 responseField.style.opacity = 1;
             } 
@@ -40,12 +43,19 @@ async function getSynonyms() {
     form.reset()
 }
 
-const responseField = document.getElementById('responseField');
 const renderSynoynms = (synonyms) => {
+    const synonymDiv = document.createElement('div');
     let wordList = [];
     for (let i = 0; i < Math.min(synonyms.length, 27); ++i) {
         wordList.push(`<li>${synonyms[i]}</li>`);
     }
     wordList = wordList.join("");
-    responseField.innerHTML = wordList;
+    synonymDiv.innerHTML = wordList;
+    responseField.appendChild(synonymDiv);
+    adjustSynonymHeight(synonymDiv);
+}
+
+function adjustSynonymHeight(synonymDiv) {
+    const contentHeight = synonymDiv.scrollHeight;
+    responseField.style.height = (contentHeight + 150) / 3 + 'px';
 }

@@ -7,7 +7,7 @@
 .btn,
 .btn:focus {
   height: 45px;
-  margin-bottom: 3.5px;
+  margin-bottom: 4px;
   margin-left: -4px;
   
   border-bottom-left-radius: 0;
@@ -141,7 +141,7 @@ body {
 
 #responseField {
   column-count: 3;
-  column-gap: 20px;
+  column-gap: 10px;
 
   opacity: 0;
   margin: auto;
@@ -152,32 +152,34 @@ body {
 
   background-color: rgb(243, 243, 243, 0.5);
   width: 40vw;
-  height: 40vh;
+  /* height adjusted dynamically */
 
   font-size: 18px;
   color: rgb(255, 255, 255);
   border-radius: 20px;
 
-  transition: opacity 0.5s ease;
+  transition: height 1s ease, opacity 0.5s ease;
 }
 
 #definitionField {
+  text-align: center;
+  word-wrap: break-word;
   opacity: 0;
   margin: auto;
-  margin-top: 20px;
-  position: relative; 
+  margin-top: 35px;
   padding-top: 20px;
+  padding-right: 40px;
   top: 30px;
 
   background-color: rgb(243, 243, 243, 0.5);
   width: 40vw;
-  height: 40vh;
+  /* height adjusted dynamically */
 
   font-size: 18px;
   color: rgb(255, 255, 255);
   border-radius: 20px;
 
-  transition: opacity 0.5s ease;
+  transition: height 1s ease, opacity 0.5s ease;
 }
 
 li {
@@ -187,6 +189,7 @@ li {
 }
 
 input {
+  user-select: none;
   height: 45px;
   border: none;
   border-top-left-radius: 10px;
@@ -198,16 +201,54 @@ input:focus {
   outline: none;
 }
 
-#syno {
+.syno {
+  user-select: none;
   color: rgb(193, 193, 255);
+}
+
+.myn {
+  user-select: none;
+  color: white;
 }
 
 a {
   color: white;
-  transition: color 0.3s ease;
+  font-size: 25px;
+  transition: font-size 0.5s ease, color 0.3s ease;
 }
+
 a:hover {
   color: rgb(193, 193, 255);
+  font-size: 27px;
+}
+
+/* a:hover + .syno {
+  color: white;
+}
+
+a:hover + .myn {
+  color: rgb(193, 193, 255);
+} */
+
+a:hover .fa-highlighter {
+  transform: rotate(40deg);
+}
+
+i {
+  transition: transform 1s ease;
+}
+
+#submit:hover .search-spin {
+  animation: searchSpin 2s cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+@keyframes searchSpin {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
 }
 
 .fade-in {
