@@ -201,14 +201,16 @@ input:focus {
   outline: none;
 }
 
-.syno {
+#syno {
   user-select: none;
   color: rgb(193, 193, 255);
+  transition: color 0.5s ease;
 }
 
-.myn {
+#myn {
   user-select: none;
   color: white;
+  transition: color 0.5s ease;
 }
 
 a {
@@ -221,14 +223,6 @@ a:hover {
   color: rgb(193, 193, 255);
   font-size: 27px;
 }
-
-/* a:hover + .syno {
-  color: white;
-}
-
-a:hover + .myn {
-  color: rgb(193, 193, 255);
-} */
 
 a:hover .fa-highlighter {
   transform: rotate(40deg);

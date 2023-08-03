@@ -14,7 +14,7 @@
      <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
         <header class="mb-auto"></header>
         <main class="px-3 fade-in">
-            <h1 class="syno">syno<span class="myn">myn  <a href="dictionary.html"><i class="fa fa-highlighter"></i></a></span></h1>
+            <h1 id="syno">syno<span id="myn">myn  <a href="dictionary.html"><i  class="fa fa-highlighter" onmouseover="changeColor()" onmouseout="resetColor()"></i></a></span></h1>
             <br> 
 
             <form id="form" autocomplete="off">
@@ -29,5 +29,17 @@
         <footer class="mt-auto text-white-50"></footer>
     </div>
     <script src="../scripts/thesaurus.js"></script>
+    <script>
+      const syno = document.getElementById('syno');
+      const myn = document.getElementById('myn');
+      function changeColor() {
+          syno.style.color = "white";
+          myn.style.color = "rgb(193, 193, 255)";
+      }
+      function resetColor() {
+          syno.style = '';
+          myn.style = '';
+      }
+    </script>
   </body>
 </html>
